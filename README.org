@@ -1,11 +1,11 @@
 * Sping 2020 - 235 - Homework / Classwork
 
-* Last name:
+* Last name:Zats
 
-* First name:
+* First name:Anne
 
 
-* GitHub username:
+* GitHub username:annezats
 
 * General instructions:
 - Fill in your name and GitHub username on top.
