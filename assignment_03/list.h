@@ -5,7 +5,6 @@
 
 class List{
 private:
-    std::string dummy="";
   Node *head;
 public:
   List();
