@@ -1,5 +1,4 @@
 #include "node.h"
-
 /*for merge
 get the head of each node,
 compare the two, add the smaller one then for that one head= head->getNext()
