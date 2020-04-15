@@ -1,4 +1,4 @@
-OBJECTS=main.o Node.o tree.o
+OBJECTS=main.o Node.o tree.o main
 LDFLAGS=
 CXXFLAGS= -std=c++14
 
