@@ -1,11 +1,11 @@
 #pragma once
 
-class Node {
- private:
+class Node{
+private:
   int data;
   Node *left;
   Node *right;
- public:
+public:
   Node();
   Node(int data);
   Node(int d, Node *left, Node *right);

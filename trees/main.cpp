@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Node.h"
-
+#include "node.h"
+#include "tree.h"
 
 int main()
 {
@@ -20,8 +20,12 @@ int main()
   p->setLeft(r);
   std::cout<< s->getData() << std::endl;
   std::cout<< s->getLeft()->getData() <<"  "<< s->getRight()->getData()<< std::endl;
-  std::cout<< n->getLeft()->getData() << "  " << p->getLeft()->getData() <<"  "<< p->getRight()->getData()<< std::endl;
-std::cout<< m->getLeft()->getData() << std::endl;
+  //std::cout<< n->getLeft()->getData() << "  " << p->getLeft()->getData() <<"  "<< p->getRight()->getData()<< std::endl;
+  //std::cout<< m->getLeft()->getData() << std::endl;
+  //^^ those give a segmentation fault. hahah
+  tree *tree1= new tree();
+  tree1->setup();
+  std::cout<<tree1->get_debug_string()<< std::endl;
 
   return 0;
 }
