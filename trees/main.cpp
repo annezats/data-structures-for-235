@@ -27,5 +27,19 @@ int main()
   tree1->setup();
   std::cout<<tree1->get_debug_string()<< std::endl;
 
+  tree *tree2= new tree();
+  tree2->insert(10);
+  //std::cout<<tree2->get_debug_string()<< std::endl;
+  //std::cout<<tree2->root->getData()<< std::endl;
+  tree2->insert(20);
+  tree2->insert(30);
+  tree2->insert(5);
+  tree2->insert(17);
+  tree2->insert(22);
+  tree2->insert(35);
+  tree2->insert(408);
+  tree2->insert(3);
+  tree2->insert(9);
+  std::cout<<tree2->get_debug_string()<< std::endl;
   return 0;
 }

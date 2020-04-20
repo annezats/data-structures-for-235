@@ -5,8 +5,31 @@ tree::tree(){
   root = nullptr;
 }
 
-void tree::insert( int data){
+void tree::insert(int data){
+  if (root==nullptr)
+    root= new Node(data);
+  else
+  insert_helper(root, data);
+}
 
+void tree::insert_helper(Node * thisnode, int data){
+  if (data> thisnode->getData()){
+    if (thisnode->getRight()==nullptr){
+      Node*n = new Node(data);
+      thisnode->setRight(n);
+    }
+    else
+      insert_helper(thisnode->getRight(), data);
+  }
+
+  if (data< thisnode->getData()){
+    if (thisnode->getLeft()==nullptr){
+      Node*n = new Node(data);
+      thisnode->setLeft(n);
+    }
+    else
+      insert_helper(thisnode->getLeft(), data);
+  }
 }
 
 std::string tree::make_debug_string(Node * root){ //makes debugger starting at any node
