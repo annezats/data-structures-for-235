@@ -1,0 +1,5 @@
+the remove function only works if the node to be deleted has no children
+it encounters problems if the parent of the node to be deleted has one child and one nullptr
+tree.cpp line 108 is where the issue is, because if either of the nodes are nullptrs it wont work
+it took me a while to figure it out and now that i know the issue i have ideas on how to fix it but i havent done them yet
+because all my ideas involve convoluted things of nested conditionals

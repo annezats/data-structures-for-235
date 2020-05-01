@@ -15,4 +15,5 @@ public:
   void setup(); //hardcodes a tree for setup
 private:
   Node * root;
+
 };

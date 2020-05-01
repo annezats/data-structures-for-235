@@ -41,5 +41,17 @@ int main()
   tree2->insert(3);
   tree2->insert(9);
   std::cout<<tree2->get_debug_string()<< std::endl;
+
+  tree2->remove(3);
+  std::cout<<tree2->get_debug_string()<< std::endl; //WORKS
+  //WORKS
+  //Node * smallesttest = tree2->searchforsmallest(tree2->root->getRight());
+  //std::cout<<smallesttest->getData()<<std::endl;
+  //doesnt work
+  /*tree2->remove(17);
+  std::cout<<tree2->get_debug_string()<< std::endl;
+  tree2->remove(20);
+  std::cout<<tree2->get_debug_string()<< std::endl;
+  */
   return 0;
 }

@@ -35,7 +35,8 @@ void tree::insert_helper(Node * thisnode, int data){
 void tree::remove (int data){
   //setup
   //find the Node, keep track of its parent
-  Node* parent= searchforparent(root, data);
+  Node* parent= searchforparent(root, data);//WORKS
+  //std::cout<< "parent worked"<< std::endl;
   Node *mynode = nullptr; bool isleft; Node *child = nullptr;
   if (parent->getRight()->getData()==data){
     mynode = parent->getRight();
@@ -48,17 +49,25 @@ void tree::remove (int data){
   int c=4;//case counter
   if (mynode->getLeft() == nullptr && mynode->getRight() == nullptr){
     c = 1;//has no children
+    std::cout<< "CASE1 worked"<< std::endl;
+
   }
   if (mynode->getLeft() == nullptr && mynode->getRight() != nullptr){
     c = 2; //has right child
     child = mynode->getRight();
+    std::cout<< "CASE2 p1 worked"<< std::endl;
+
   }
   if (mynode->getLeft() != nullptr && mynode->getRight() == nullptr){
     c = 2; //has left child
     child = mynode->getLeft();
+    std::cout<< "CASE2 p2 worked"<< std::endl;
+
   }
   if (mynode->getLeft() != nullptr && mynode->getRight() != nullptr){
     c = 3; //has both children
+    std::cout<< "CASE3 worked"<< std::endl;
+
   }
   switch (c){
     case 1 :   //if no children, delete node, set parent's children to null
@@ -69,6 +78,7 @@ void tree::remove (int data){
       else parent->setRight(nullptr);
       break;
     case 2: //if one right child, delete node, set parent's child to child
+      std::cout<< "CASE2 worked"<< std::endl;
       delete mynode;
       if (isleft){
         parent->setLeft(child);
@@ -76,7 +86,9 @@ void tree::remove (int data){
       else parent->setRight(child);
       break;
     case 3: //if two children, find smallest of right children, stick value into node, remove smallest (duplicate)
+      std::cout<< "CASE3 worked"<< std::endl;
       Node * smallest = searchforsmallest(mynode->getRight());
+      std::cout<< "search for smallest worked"<< std::endl;
       int smallestvalue = smallest->getData();
       Node * smallestparent = searchforparent(mynode->getRight(),smallestvalue);
       mynode->setData(smallestvalue);
@@ -87,18 +99,32 @@ void tree::remove (int data){
 }
 
 Node * tree::searchforparent(Node * mynode, int data){
-  if (mynode->getRight()->getData()== data || mynode->getLeft()->getData()== data){
-    return mynode;
-  }
+  std::cout<< "got into search for parent"<< mynode->getData()<<std::endl;
   if (mynode->getRight()== nullptr && mynode->getLeft()== nullptr){
+    std::cout<< "hit dead end"<< std::endl;
     return nullptr;
   }
-  Node * searchedleft = searchforparent(mynode->getLeft(), data);
-  if (searchedleft != nullptr){
-    return searchedleft;
+  //THIS IS WHERE THE ISSUE IS, because if either of the nodes are nullptrs it wont work
+  if (mynode->getRight()->getData()== data || mynode->getLeft()->getData()== data){
+    std::cout<< "hit parent"<< std::endl;
+    return mynode;
   }
-  Node * searchedright = searchforparent(mynode->getRight(), data);
-  return searchedright;
+  std::cout<< "abt to go into problem"<< std::endl;
+  std::cout<< mynode->getRight()->getData()<< std::endl;
+  if (mynode->getRight() != nullptr){//WHY DOESNT IT GO HERE??
+    std::cout<< "abt to go into searchedright"<< std::endl;
+    Node * searchedright = searchforparent(mynode->getRight(), data);
+    std::cout<< "got out of searchedright"<< std::endl;
+    if (searchedright != nullptr){
+      std::cout<< "passing along thing"<< std::endl;
+      return searchedright;
+    }
+  }
+  std::cout<< "abt to go into searchedleft"<< std::endl;
+  Node * searchedleft = searchforparent(mynode->getLeft(), data);
+  std::cout<< "got out of searched left"<< std::endl;
+
+  return searchedleft;
 }
 
 
