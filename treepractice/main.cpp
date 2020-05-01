@@ -49,6 +49,23 @@ int num_leaves(Node * root){
   return left + right;
 }
 
+int height(Node * root){
+  if (root->getLeft()==nullptr && root->getRight()==nullptr){
+    return 1;
+  }
+  int left = 0; int right = 0;
+  if (root->getLeft() != nullptr){
+    left = height(root->getLeft());
+  }
+  if (root->getRight() != nullptr){
+    right = height(root->getRight());
+  }
+  if (left>right){
+    return left + 1;
+  }
+  else return right + 1;
+}
+
 int main()
 {
   Node *n = new Node(20);
@@ -90,6 +107,6 @@ int main()
   std::cout << "challenge 1 : size:" << num_nodes(tree2->root)<< std::endl;
   std::cout << "challenge 2 : sum:" << sum_nodes(tree2->root)<< std::endl;
   std::cout << "challenge 3 : num leaves:" << num_leaves(tree2->root)<< std::endl;
-
+  std::cout << "challenge 4 : height:" << height(tree2->root)<< std::endl;
   return 0;
 }
