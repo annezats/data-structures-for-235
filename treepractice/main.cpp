@@ -22,22 +22,31 @@ int num_nodes(Node * root){
 }
 
 int sum_nodes(Node * root){
-  //std::cout<<"starting "<<std::to_string(root->getData())<<std::endl;
   if (root->getLeft()==nullptr && root->getRight()==nullptr){
-    //std::cout<<"reached leaf"<<std::endl;
     return root->getData();
   }
   int left = 0; int right = 0;
   if (root->getLeft() != nullptr){
     left = sum_nodes(root->getLeft());
-    //std::cout<<"finished left"<<std::to_string(left)<<std::endl;
   }
   if (root->getRight() != nullptr){
     right = sum_nodes(root->getRight());
-    //std::cout<<"finished right"<<std::to_string(right)<<std::endl;
   }
-  //std::cout<<std::to_string(root->getData())<<"going back up "<< std::to_string(left + right) <<std::endl;
   return left + right + root->getData();
+}
+
+int num_leaves(Node * root){
+  if (root->getLeft()==nullptr && root->getRight()==nullptr){
+    return 1;
+  }
+  int left = 0; int right = 0;
+  if (root->getLeft() != nullptr){
+    left = num_leaves(root->getLeft());
+  }
+  if (root->getRight() != nullptr){
+    right = num_leaves(root->getRight());
+  }
+  return left + right;
 }
 
 int main()
@@ -80,6 +89,7 @@ int main()
   std::cout<<tree2->get_debug_string()<< std::endl;
   std::cout << "challenge 1 : size:" << num_nodes(tree2->root)<< std::endl;
   std::cout << "challenge 2 : sum:" << sum_nodes(tree2->root)<< std::endl;
+  std::cout << "challenge 3 : num leaves:" << num_leaves(tree2->root)<< std::endl;
 
   return 0;
 }
