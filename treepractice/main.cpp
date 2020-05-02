@@ -66,6 +66,20 @@ int height(Node * root){
   else return right + 1;
 }
 
+int sum_at_level(Node * root, int level){
+  if (level == 1){
+    return root->getData();
+  }
+  int left = 0; int right = 0;
+  if (root->getLeft() != nullptr){
+    left = sum_at_level(root->getLeft(), level-1);
+  }
+  if (root->getRight() != nullptr){
+    right = sum_at_level(root->getRight(), level-1);
+  }
+  return right + left;
+}
+
 int main()
 {
   Node *n = new Node(20);
@@ -108,5 +122,7 @@ int main()
   std::cout << "challenge 2 : sum:" << sum_nodes(tree2->root)<< std::endl;
   std::cout << "challenge 3 : num leaves:" << num_leaves(tree2->root)<< std::endl;
   std::cout << "challenge 4 : height:" << height(tree2->root)<< std::endl;
+  std::cout << "challenge 5 : sumatlevel3:" << sum_at_level(tree2->root,3 )<< std::endl;
+
   return 0;
 }
