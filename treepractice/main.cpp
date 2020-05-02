@@ -80,6 +80,23 @@ int sum_at_level(Node * root, int level){
   return right + left;
 }
 
+int rootleaf(Node * root){
+  if (root->getLeft()==nullptr && root->getRight()==nullptr){
+    return root->getData();
+  }
+  int left = 0; int right = 0;
+  if (root->getLeft() != nullptr){
+    left = rootleaf(root->getLeft());
+  }
+  if (root->getRight() != nullptr){
+    right = rootleaf(root->getRight());
+  }
+  if (left>right){
+    return left + root->getData();
+  }
+  else return right + root->getData();
+}
+
 int main()
 {
   Node *n = new Node(20);
@@ -123,6 +140,7 @@ int main()
   std::cout << "challenge 3 : num leaves:" << num_leaves(tree2->root)<< std::endl;
   std::cout << "challenge 4 : height:" << height(tree2->root)<< std::endl;
   std::cout << "challenge 5 : sumatlevel3:" << sum_at_level(tree2->root,3 )<< std::endl;
+  std::cout << "challenge 6 : rootleaf:" << rootleaf(tree2->root )<< std::endl;
 
   return 0;
 }
