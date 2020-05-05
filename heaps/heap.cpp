@@ -35,12 +35,15 @@ void siftup(int array1[], int n){
   }
 }
 
-void removemin(int array1[]){
+void removemin(int array1[], int size){
   int root = array1[0]; int n=0;
   int rightchild = array1[(2*n+2)];
-  while ( (2*n+2) < SIZE){
-    siftup( array1, (2*n+2));
-    n = (2*n+2);
+  while ( (2*n+2) < size){
+    array1[n] = rightchild; //stick myvalue into parentnode
+    array1[2*n+2] = root; //stick parentvalue into mynode
+    n = 2*n+2; //move index up to parentindex
+    rightchild = root;
+    root = array1[2*n+2];
   }
   //array1[SIZE-1]=0; //this command removes the min that is now the last value in the heap
   //return root;
@@ -49,7 +52,7 @@ void removemin(int array1[]){
 void heapsort(int array1[]){
   int size = SIZE;
   for (int n=0; n< SIZE; n++){
-   removemin(array1);
+   removemin(array1, size);
    size--;
   }
 }
